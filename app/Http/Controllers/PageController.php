@@ -12,8 +12,9 @@ class PageController extends Controller
         $url = ShortLink::whereShort($short)->first();
         if ($url) {
             $shortLinkService->increment($url);
-        } else {
-            return abort(404);
+            return redirect($url->url);
         }
+
+        return abort(404);
     }
 }
